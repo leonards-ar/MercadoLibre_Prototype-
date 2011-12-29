@@ -1,0 +1,239 @@
+<html>
+  <head>
+    <title>Consolidador Medios de Pago</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link type="text/css" href="css/themename/jquery-ui-1.8.17.custom.css" rel="Stylesheet" />	
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>    
+    <link rel="shortcut icon" href="images/logo-mercadolibre.png" type="image/x-icon" />
+	  
+  <link rel="stylesheet" href="css/innova.css" type="text/css" media="screen" charset="utf-8">
+  <script type="text/javascript" src="js/application.js"></script>
+
+  <script type="text/javascript">
+    function showParams() {
+      var options = {};
+     //document.getElementById('myBody').style.display='block';
+     $( "#myBody" ).show( "blind", options, 500, "" );
+     
+    }
+    
+	$(function() {
+		$( "#selectable"  ).selectable();
+		$( "#selectableTo"  ).selectable();
+		
+	});    
+  </script>
+  
+	<style>
+	#feedback { font-size: 1.4em; }
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#selectable li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }
+	#selectableTo .ui-selecting { background: #FECA40; }
+	#selectableTo .ui-selected { background: #95FD04; color: white; }
+	#selectableTo { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#selectableTo li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }	
+	</style>  
+</head>
+<body>
+  <div id="spinner" class="spinner" style="display:none;">
+    <img src="images/spinner.gif" alt="Spinner" />
+  </div>
+  <div class="logo"><img src="images/logo-mercadolibre.png" alt="Innovative" />
+
+      <p>  </p>
+      <div class="welcomeBox">
+        
+
+          <br/><br/>
+          Bienvenido Usuario!
+        
+        <br/><br/>
+          <a href="login.htm">Abandonar</a>        
+        
+      </div>
+  </div>
+
+    <div class="nav">
+      <span class="menuButton"><a class="home" href="main.htm">Inicio</a></span>
+      <span class="menuButton"><a class="home" href="conciliaciones.htm">Conciliaciones</a></span>
+    </div>
+    
+    <h1>Pre conciliacion Semiautomatica</h1>
+    <div id="searchBox">
+      <form action="#" method="post" name="searchForm" id="searchForm" >
+        <table>
+          <tr>
+          <td>
+            <div>Country </div>
+          <select name="selectedCountry" id="selectedCountry" >
+		<option value=""></option>
+		<option value="AR" >Argentina</option>
+		<option value="BO" >Bolivia</option>
+		<option value="BR" >Brasil</option>
+		<option value="CH" >Chile</option>
+		<option value="CO" >Colombia</option>
+		<option value="EC" >Ecuador</option>
+		<option value="MX" >Mexico</option>
+		<option value="PE" >Peru</option>
+		<option value="UR" >Uruguay</option>
+		<option value="VE" >Venezuela</option>
+	</select>
+          </td>
+          <td>
+            <div>Division </div>
+          <select name="selectedDivision" id="selectedDivision" >
+		<option value=""></option>
+		<option value="D1" >Division1</option>
+		<option value="D2" >Division2</option>
+		<option value="D3" >Division3</option>
+	</select>
+          </td>
+          <td>
+            <div>Medio de Cobro </div>
+
+          <select name="selectedDivision" id="selectedDivision" >
+		<option value=""></option>
+		<option value="C1" >Medio de Cobro 1</option>
+		<option value="C2" >Medio de Cobro 2</option>
+		<option value="C3" >Medio de Cobro 3</option>
+	</select>
+          </td>
+          <td>
+            <div>&nbsp;</div>
+            <span class="button"><input type="button" name="search" class="save" value="Lock" id="lock" onClick="showParams()" /></span>
+          </td>
+
+          </tr>
+        </table>
+
+      </form>
+
+    </div>
+    <br/>
+    <div id="myBody" style="display:none" class="ui-widget-content ui-corner-all">
+    
+    <div id="params">
+    	<table>
+    	  <tr>
+ <td><input type="hidden" name="_product16" /><input type="checkbox" name="product16" id="product16"  /></td>
+        <td>Param 1</td>
+        
+      
+        <td><input type="hidden" name="_product18" /><input type="checkbox" name="product18" id="product18"  /></td>
+        <td>Param 2</td>
+        
+      
+        <td><input type="hidden" name="_product48" /><input type="checkbox" name="product48" id="product48"  /></td>
+        <td>Param 3</td>
+
+        
+      
+        <td><input type="hidden" name="_product5" /><input type="checkbox" name="product5" id="product5"  /></td>
+        <td>Param 4</td>
+        
+      
+        <td><input type="hidden" name="_product22" /><input type="checkbox" name="product22" id="product22"  /></td>
+        <td>Param 5</td>
+        
+          </tr><tr>
+        
+      
+        <td><input type="hidden" name="_product4" /><input type="checkbox" name="product4" id="product4"  /></td>
+        <td>Param 6</td>
+
+        
+      
+        <td><input type="hidden" name="_product1" /><input type="checkbox" name="product1" id="product1"  /></td>
+        <td>Param 7</td>
+        
+      
+        <td><input type="hidden" name="_product9" /><input type="checkbox" name="product9" id="product9"  /></td>
+        <td>Param 8</td>
+        
+      
+        <td><input type="hidden" name="_product63" /><input type="checkbox" name="product63" id="product63"  /></td>
+        <td>Param 9</td>
+        
+      
+        <td><input type="hidden" name="_product62" /><input type="checkbox" name="product62" id="product62"  /></td>
+
+        <td>Param 10</td>
+        </tr>
+          </table>
+    </div>    
+
+    <br/>    
+    <div id="tolerancia">
+    <table>   
+ 
+
+     <tr>
+      <td>Dias</td>
+      <td><input type="text" name="diasTolerancia"/></td>
+      <td>Monto</td>
+      <td><input type="text" name="montoTolerancia"/></td>
+      <td><input type="button" name="runJob" class="save" value="Run Job" id="runJob" onClick="$( '#preconciliacion' ).show( 'blind', {}, 500, '' );"/></td>
+</table>
+    
+    </div>	
+
+    <br/>
+    <div id="preconciliacion" style="display:none;">
+    <table>
+    <tr>
+      <td>
+        <div id="from" style="width:300;height:300;overflow:auto;border:0.5px">
+          <ol class="selectable" id="selectable">
+       	   <li class="ui-widget-content">Item 3</li>
+       	   <li class="ui-widget-content">Item 4</li>
+       	   <li class="ui-widget-content">Item 5</li>
+       	   <li class="ui-widget-content">Item 6</li>
+       	   <li class="ui-widget-content">Item 7</li>
+       	   <li class="ui-widget-content">Item 8</li>
+       	   <li class="ui-widget-content">Item 9</li>
+       	   <li class="ui-widget-content">Item 10</li>
+       	   <li class="ui-widget-content">Item 11</li>
+       	   <li class="ui-widget-content">Item 12</li>
+       	   <li class="ui-widget-content">Item 13</li>
+       	   <li class="ui-widget-content">Item 14</li>
+       	   <li class="ui-widget-content">Item 15</li>
+       	   <li class="ui-widget-content">Item 16</li>
+       	   <li class="ui-widget-content">Item 17</li>
+       	   <li class="ui-widget-content">Item 18</li>
+       	   <li class="ui-widget-content">Item 19</li>
+       	   <li class="ui-widget-content">Item 20</li>
+       	   <li class="ui-widget-content">Item 21</li>
+       	   <li class="ui-widget-content">Item 22</li>
+       	   <li class="ui-widget-content">Item 23</li>
+       	   <li class="ui-widget-content">Item 24</li>
+       	   <li class="ui-widget-content">Item 25</li>
+       	   <li class="ui-widget-content">Item 26</li>
+       	   <li class="ui-widget-content">Item 27</li>
+       	   <li class="ui-widget-content">Item 28</li>
+       	   <li class="ui-widget-content">Item 29</li>
+          </ol>
+       </div>
+      </td>
+      <td>
+       <p> Aca iríran los botones </p>
+      </td>
+      
+      <td>
+        <div  id="to" style="width:300;height:300;overflow:auto">
+          <ol class="selectable" id="selectableTo">        
+       	   <li class="ui-widget-content">Item 1</li>
+       	   <li class="ui-widget-content">Item 2</li>
+          </ol>
+       </div>
+      </td>      
+    </tr>
+    </table>
+    </div>
+    </div>
+    
+  
+</body>
+</html>
