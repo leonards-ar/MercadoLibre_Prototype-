@@ -1,0 +1,218 @@
+<html>
+  <head>
+    <title>Consolidador Medios de Pago</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" />	
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>    
+    <link rel="shortcut icon" href="images/logo-mercadolibre.png" type="image/x-icon" />
+	  
+  <link rel="stylesheet" href="css/innova.css" type="text/css" media="screen" charset="utf-8">
+  <script type="text/javascript" src="js/application.js"></script>
+
+  <script type="text/javascript">
+
+    
+	$(function() {
+		$( "#selectable"  ).selectable(
+		stop: function() {
+				var result = $( "#select-result" ).empty();
+				$( ".ui-selected", this ).each(function() {
+					var index = $( "#selectable li" ).index( this );
+					result.append( " #" + ( index + 1 ) );
+				});
+			}
+		});
+	}););
+		$( "#selectableTo"  ).selectable();
+		$( "#selectableCons"  ).selectable();
+		
+	});    
+  </script>
+  
+	<style>
+	#feedback { font-size: 1.4em; }
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#selectable li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }
+	#selectableTo .ui-selecting { background: #FECA40; }
+	#selectableTo .ui-selected { background: #95FD04; color: white; }
+	#selectableTo { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#selectableTo li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }	
+	#selectableCons .ui-selecting { background: #FECA40; }
+	#selectableCons .ui-selected { background: #95FD04; color: white; }
+	#selectableCons { list-style-type: none; margin: 0; padding: 0; width: 60%; }	
+	#selectableCons li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }	
+	</style>  
+</head>
+<body>
+  <div id="spinner" class="spinner" style="display:none;">
+    <img src="images/spinner.gif" alt="Spinner" />
+  </div>
+  <div class="logo"><img src="images/logo-mercadolibre.png" alt="Innovative" />
+
+      <p>  </p>
+      <div class="welcomeBox">
+        
+
+          <br/><br/>
+          Bienvenido Usuario!
+        
+        <br/><br/>
+          <a href="login.htm">Abandonar</a>        
+        
+      </div>
+  </div>
+
+    <div class="nav">
+      <span class="menuButton"><a class="home" href="main.htm">Inicio</a></span>
+      <span class="menuButton"><a class="home" href="conciliaciones.htm">Conciliaciones</a></span>
+    </div>
+    
+    <h1>Pre conciliacion Semiautomatica</h1>
+    <div id="searchBox">
+      <form action="#" method="post" name="searchForm" id="searchForm" >
+        <table>
+          <tr>
+          <td>
+            <div>Country </div>
+          <select name="selectedCountry" id="selectedCountry" >
+		<option value=""></option>
+		<option value="AR" >Argentina</option>
+		<option value="BO" >Bolivia</option>
+		<option value="BR" >Brasil</option>
+		<option value="CH" >Chile</option>
+		<option value="CO" >Colombia</option>
+		<option value="EC" >Ecuador</option>
+		<option value="MX" >Mexico</option>
+		<option value="PE" >Peru</option>
+		<option value="UR" >Uruguay</option>
+		<option value="VE" >Venezuela</option>
+	</select>
+          </td>
+          <td>
+            <div>Division </div>
+          <select name="selectedDivision" id="selectedDivision" >
+		<option value=""></option>
+		<option value="D1" >Division1</option>
+		<option value="D2" >Division2</option>
+		<option value="D3" >Division3</option>
+	</select>
+          </td>
+          <td>
+            <div>Medio de Cobro </div>
+
+          <select name="selectedDivision" id="selectedDivision" >
+		<option value=""></option>
+		<option value="C1" >Medio de Cobro 1</option>
+		<option value="C2" >Medio de Cobro 2</option>
+		<option value="C3" >Medio de Cobro 3</option>
+	</select>
+          </td>
+          <td>
+            <span class="button"><input type="button" name="search" class="save" value="Lock" id="lock" onClick=" $( '#myBody' ).show( 'blind', {}, 500, '' );" /></span>
+          </td>
+
+          </tr>
+        </table>
+
+      </form>
+
+    </div>
+    <br/>
+    <div id="myBody" style="display:none" class="ui-widget-content ui-corner-all">
+    
+    <div id="preconciliacion">
+    <table>
+    <tr>
+      <td>
+        <div id="sales" style="width:300;height:200;overflow:auto;">
+          <ol class="selectable" id="selectable">
+       	   <li class="ui-widget-content">Venta 3</li>
+       	   <li class="ui-widget-content">Venta 4</li>
+       	   <li class="ui-widget-content">Venta 5</li>
+       	   <li class="ui-widget-content">Venta 6</li>
+       	   <li class="ui-widget-content">Venta 7</li>
+       	   <li class="ui-widget-content">Venta 8</li>
+       	   <li class="ui-widget-content">Venta 9</li>
+       	   <li class="ui-widget-content">Venta 10</li>
+       	   <li class="ui-widget-content">Venta 11</li>
+       	   <li class="ui-widget-content">Venta 12</li>
+       	   <li class="ui-widget-content">Venta 13</li>
+       	   <li class="ui-widget-content">Venta 14</li>
+       	   <li class="ui-widget-content">Venta 15</li>
+       	   <li class="ui-widget-content">Venta 16</li>
+       	   <li class="ui-widget-content">Venta 17</li>
+       	   <li class="ui-widget-content">Venta 18</li>
+       	   <li class="ui-widget-content">Venta 19</li>
+       	   <li class="ui-widget-content">Venta 20</li>
+       	   <li class="ui-widget-content">Venta 21</li>
+       	   <li class="ui-widget-content">Venta 22</li>
+       	   <li class="ui-widget-content">Venta 23</li>
+       	   <li class="ui-widget-content">Venta 24</li>
+       	   <li class="ui-widget-content">Venta 25</li>
+       	   <li class="ui-widget-content">Venta 26</li>
+       	   <li class="ui-widget-content">Venta 27</li>
+       	   <li class="ui-widget-content">Venta 28</li>
+       	   <li class="ui-widget-content">Venta 29</li>
+          </ol>
+       </div>
+      </td>
+      <td>
+        <span class="button"><input type="button" name="search" class="save" value="agrupar" id="agrupar" onClick="alert('should be agrupate');" /></span>
+      </td>
+      <td>
+        <div  id="cards" style="width:300;height:200;overflow:auto;">
+          <ol class="selectable" id="selectableTo">        
+       	   <li class="ui-widget-content">Medio de cobro 3</li>
+       	   <li class="ui-widget-content">Medio de cobro 4</li>
+       	   <li class="ui-widget-content">Medio de cobro 5</li>
+       	   <li class="ui-widget-content">Medio de cobro 6</li>
+       	   <li class="ui-widget-content">Medio de cobro 7</li>
+       	   <li class="ui-widget-content">Medio de cobro 8</li>
+       	   <li class="ui-widget-content">Medio de cobro 9</li>
+       	   <li class="ui-widget-content">Medio de cobro 10</li>
+       	   <li class="ui-widget-content">Medio de cobro 11</li>
+       	   <li class="ui-widget-content">Medio de cobro 12</li>
+       	   <li class="ui-widget-content">Medio de cobro 13</li>
+       	   <li class="ui-widget-content">Medio de cobro 14</li>
+       	   <li class="ui-widget-content">Medio de cobro 15</li>
+       	   <li class="ui-widget-content">Medio de cobro 16</li>
+       	   <li class="ui-widget-content">Medio de cobro 17</li>
+       	   <li class="ui-widget-content">Medio de cobro 18</li>
+       	   <li class="ui-widget-content">Medio de cobro 19</li>
+          </ol>
+       </div>
+      </td>      
+    </tr>
+    </table>
+    </div>
+      <br/>
+    <div id="conciliado">
+      <table>
+      <tr>
+      <td> 
+        <div  style="width:300;height:200;overflow:auto;"/>
+ 
+       </td>
+        <td>
+        <div id="consolidatedCards" style="width:400;height:200;overflow:auto;">
+          <ol class="selectable" id="selectableCons">
+       	   <li class="ui-widget-content">Venta 1 - Medios de Cobro 1</li>
+       	   <li class="ui-widget-content">Venta 2 - Medios de Cobro 2</li>
+          </ol>
+       </div>
+      </td>
+      <td> 
+        <div style="width:100;height:200;overflow:auto;"/>
+ 
+       </td>
+    </tr>
+    </table>
+    </div>    
+    </div>
+    
+  
+</body>
+</html>
