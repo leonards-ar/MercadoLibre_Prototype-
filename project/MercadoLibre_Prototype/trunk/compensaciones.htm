@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <title>Consolidador Medios de Pago</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" />	
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>    
+    <link rel="shortcut icon" href="images/logo-mercadolibre.png" type="image/x-icon" />
+	  
+  <link rel="stylesheet" href="css/innova.css" type="text/css" media="screen" charset="utf-8">
+  
+  <script type="text/javascript">
+	$(function() {
+		$( '#tabs' ).tabs();
+		$( '#selectable' ).selectable();
+		$( '#selectableLiq' ).selectable();
+		$( '#selectableFin' ).selectable();  
+	});
+	</script>
+  
+  <style>
+#feedback { font-size: 1.4em; }
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }  
+	#selectableLiq .ui-selecting { background: #FECA40; }
+	#selectableLiq .ui-selected { background: #F39814; color: white; }
+	#selectableLiq { list-style-type: none; margin: 0; padding: 0; width: 60%; }  	
+	#selectableFin .ui-selecting { background: #FECA40; }                           	
+	#selectableFin .ui-selected { background: #F39814; color: white; }              
+	#selectableFin { list-style-type: none; margin: 0; padding: 0; width: 60%; }  	
+  </style>
+</head>   
+<body>
+  <div id="spinner" class="spinner" style="display:none;">
+    <img src="images/spinner.gif" alt="Spinner" />
+  </div>
+  <div class="logo"><img src="images/logo-mercadolibre.png" alt="Innovative" />
+
+      <p>  </p>
+      <div class="welcomeBox">
+        
+
+          <br/><br/>
+          Bienvenido Usuario!
+        
+        <br/><br/>
+          <a href="login.htm">Abandonar</a>        
+        
+      </div>
+  </div>
+
+    <div class="nav">
+      <span class="menuButton"><a class="home" href="main.htm">Inicio</a></span>
+      
+    </div>
+	<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Pendiente de Ventas</a></li>
+				<li><a href="#tabs-2">Pendiente de Liquidaciones</a></li>
+				<li><a href="#tabs-3">Pendientes Financieros</a></li>
+			</ul>
+			<div id="tabs-1" style="width:300;height:200;overflow:auto;">
+          <ol class="selectable" id="selectable">
+       	   <li class="ui-widget-content">Venta 3</li>
+       	   <li class="ui-widget-content">Venta 4</li>
+       	   <li class="ui-widget-content">Venta 5</li>
+       	   <li class="ui-widget-content">Venta 6</li>
+       	   <li class="ui-widget-content">Venta 7</li>
+       	   <li class="ui-widget-content">Venta 8</li>
+       	   <li class="ui-widget-content">Venta 9</li>
+       	   <li class="ui-widget-content">Venta 10</li>
+       	   <li class="ui-widget-content">Venta 11</li>
+       	   <li class="ui-widget-content">Venta 12</li>
+       	   <li class="ui-widget-content">Venta 13</li>
+       	   <li class="ui-widget-content">Venta 14</li>
+       	   <li class="ui-widget-content">Venta 15</li>
+       	   <li class="ui-widget-content">Venta 16</li>
+       	   <li class="ui-widget-content">Venta 17</li>
+       	   <li class="ui-widget-content">Venta 18</li>
+            </ol>
+			</div>
+			<div id="tabs-2" style="width:300;height:200;overflow:auto;">          
+				<ol class="selectable" id="selectableLiq">
+	       	   <li class="ui-widget-content">Liquidaciones 3</li>
+	       	   <li class="ui-widget-content">Liquidaciones 4</li>
+	       	   <li class="ui-widget-content">Liquidaciones 5</li>
+	       	   <li class="ui-widget-content">Liquidaciones 6</li>
+	       	   <li class="ui-widget-content">Liquidaciones 7</li>
+	       	   <li class="ui-widget-content">Liquidaciones 8</li>
+	       	   <li class="ui-widget-content">Liquidaciones 9</li>
+	       	   <li class="ui-widget-content">Liquidaciones 10</li>
+	       	   <li class="ui-widget-content">Liquidaciones 11</li>
+	       	   <li class="ui-widget-content">Liquidaciones 12</li>
+	       	   <li class="ui-widget-content">Liquidaciones 13</li>
+	       	   <li class="ui-widget-content">Liquidaciones 14</li>
+	       	   <li class="ui-widget-content">Liquidaciones 15</li>
+	       	   <li class="ui-widget-content">Liquidaciones 16</li>
+	       	   <li class="ui-widget-content">Liquidaciones 17</li>
+	       	   <li class="ui-widget-content">Liquidaciones 18</li>
+	       	 </ol>
+       	   
+       	   </div>
+			<div id="tabs-3" style="width:300;height:200;overflow:auto;">				
+				<ol class="selectable" id="selectableFin">
+	       	   <li class="ui-widget-content">Financieros 3</li>
+	       	   <li class="ui-widget-content">Financieros 4</li>
+	       	   <li class="ui-widget-content">Financieros 5</li>
+	       	   <li class="ui-widget-content">Financieros 6</li>
+	       	   <li class="ui-widget-content">Financieros 7</li>
+	       	   <li class="ui-widget-content">Financieros 8</li>
+	       	   <li class="ui-widget-content">Financieros 9</li>
+	       	   <li class="ui-widget-content">Financieros 10</li>
+	       	   <li class="ui-widget-content">Financieros 11</li>
+	       	   <li class="ui-widget-content">Financieros 12</li>
+	       	   <li class="ui-widget-content">Financieros 13</li>
+	       	   <li class="ui-widget-content">Financieros 14</li>
+	       	   <li class="ui-widget-content">Financieros 15</li>
+	       	   <li class="ui-widget-content">Financieros 16</li>
+	       	   <li class="ui-widget-content">Financieros 17</li>
+	       	   <li class="ui-widget-content">Financieros 18</li>
+	       	 </ol></div>
+		</div>
+</body>
+</html>
