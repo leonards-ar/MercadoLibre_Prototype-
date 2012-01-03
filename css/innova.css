@@ -121,3 +121,11 @@ div.import a.button {
     color: #333;
     padding-left: 25px;
 }
+
+.my-state-hover {
+    background: #fff url(../images/skin/shadow.jpg);
+    color: #333;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+}
