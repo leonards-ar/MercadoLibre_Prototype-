@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>Consolidador Medios de Pago</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" />	
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>    
+    <link rel="shortcut icon" href="images/logo-mercadolibre.png" type="image/x-icon" />
+	  
+  <link rel="stylesheet" href="css/innova.css" type="text/css" media="screen" charset="utf-8">
+  
+  <script type="text/javascript">
+	$(function() {
+	
+	// Dialog			
+	$('#dialog').dialog({
+		autoOpen: false,
+		width: 600,
+		buttons: {
+			"Ok": function() { 
+				$(this).dialog("close"); 
+			}
+		}
+	});
+	
+	// Dialog Link
+	$('#import .button').click(function(){
+		$('#dialog').dialog('open');
+		return false;
+	});
+	
+	//hover states on the static widgets
+	$('#import .button, ul#icons li').hover(
+		function() { $(this).addClass('ui-state-hover'); }, 
+		function() { $(this).removeClass('ui-state-hover'); }
+	);
+	})	
+	</script>
+  
+
+</head>   
+<body>
+  <div id="spinner" class="spinner" style="display:none;">
+    <img src="images/spinner.gif" alt="Spinner" />
+  </div>
+  <div class="logo"><img src="images/logo-mercadolibre.png" alt="Innovative" />
+
+      <p>  </p>
+      <div class="welcomeBox">
+        
+
+          <br/><br/>
+          Bienvenido Usuario!
+        
+        <br/><br/>
+          <a href="login.htm">Abandonar</a>        
+        
+      </div>
+  </div>
+
+    <div class="nav">
+      <span class="menuButton"><a class="home" href="main.htm">Inicio</a></span>
+      
+    </div>
+    
+<div class="body">
+  <h1>Ejecucion de Procesos</h1>
+     <div class="import" id="import">
+     	<div class="button" id="import-liquidaciones"><a class="button" href="#">Importar Liquidaciones</a></div>
+	<div class="button" id="import-finanzas"><a class="button" href="#">Importar Finanzas</a></div>
+	<div class="button" id="import-sales"><a class="button" href="#">Importar Ventas</a></div>
+	<div class="button" id="import-large"><a class="button" href="#">Pre-conciliacion Automatica</a></div>
+	<div class="button" id="switcher-large"><a class="button" href="#">Conciliacion Automatica</a></div>
+    </div>
+    
+	<div id="dialog" title="Dialog Title">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+		</div>    
+</div>
+
+</body>
+</html>
