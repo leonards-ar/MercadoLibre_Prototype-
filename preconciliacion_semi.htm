@@ -2,7 +2,8 @@
   <head>
     <title>Consolidador Medios de Pago</title>
     <link rel="stylesheet" href="css/main.css" />
-    <link type="text/css" href="css/themename/jquery-ui-1.8.17.custom.css" rel="Stylesheet" />	
+    <link rel="stylesheet" href="css/innova.css" />
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" />	
     <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>    
     <link rel="shortcut icon" href="images/logo-mercadolibre.png" type="image/x-icon" />
@@ -11,36 +12,68 @@
   <script type="text/javascript" src="js/application.js"></script>
 
   <script type="text/javascript">
-    function showParams() {
-      var options = {};
-     //document.getElementById('myBody').style.display='block';
-     $( "#myBody" ).show( "blind", options, 500, "" );
-     
-    }
     
 	$(function() {
 		$( "#selectable"  ).selectable();
 		$( "#selectableTo"  ).selectable();
 		
+		$( "#lock" ).click( function() {
+			$( "#myBody" ).fadeToggle(500);
+			$( '#params').css('display','block');
+			$( '#tolerancia').css('display','block');
+			$( '#preconciliacion' ).css('display','none');
+			
+
+		});
+		
+		$( "#runJob" ).click( function() {
+			$( '#tolerancia').fadeToggle(500);
+			$( '#params').fadeToggle(500);
+			$( '#filters' ).fadeToggle(500);
+			$( '#preconciliacion' ).fadeToggle(500);
+		});
+		
+		$( '#fechaVenta' ).datepicker();
+		$( '#fechaLiq' ).datepicker();
+		
+		$( '#sendItems' ).click( function() {
+		
+			if($( '.ui-selected', '#selectable' ).length == 0) {
+			  alert("Seleccione al menos un elemento");
+			  return false;
+			}
+			
+			$( '.ui-selected', '#selectable' ).each(function(){
+			  $(this).removeClass('ui-selected');
+			  $( '#selectableTo' ).append(this);
+			});
+
+		});
+		
+		$( '#revertItems' ).click( function() {
+		
+			if($( '.ui-selected', '#selectableTo' ).length == 0) {
+			  alert("Seleccione al menos un elemento");
+			  return false;
+			}
+			
+			$( '.ui-selected', '#selectableTo' ).each(function(){
+			  $(this).removeClass('ui-selected');
+			  $( '#selectable' ).append(this);
+			});
+
+		});		
+		
+		
 	});    
   </script>
   
-	<style>
-	#feedback { font-size: 1.4em; }
-	#selectable .ui-selecting { background: #FECA40; }
-	#selectable .ui-selected { background: #F39814; color: white; }
-	#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-	#selectable li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }
-	#selectableTo .ui-selecting { background: #FECA40; }
-	#selectableTo .ui-selected { background: #95FD04; color: white; }
-	#selectableTo { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-	#selectableTo li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }	
-	</style>  
 </head>
 <body>
   <div id="spinner" class="spinner" style="display:none;">
     <img src="images/spinner.gif" alt="Spinner" />
   </div>
+  
   <div class="logo"><img src="images/logo-mercadolibre.png" alt="Innovative" />
 
       <p>  </p>
@@ -103,7 +136,7 @@
           </td>
           <td>
             <div>&nbsp;</div>
-            <span class="button"><input type="button" name="search" class="save" value="Lock" id="lock" onClick="showParams()" /></span>
+            <span class="button"><input type="button" name="search" class="save" value="Lock" id="lock" /></span>
           </td>
 
           </tr>
@@ -112,9 +145,9 @@
       </form>
 
     </div>
-    <br/>
-    <div id="myBody" style="display:none" class="ui-widget-content ui-corner-all">
     
+    <div id="myBody" style="display:none">
+    <br/>
     <div id="params">
     	<table>
     	  <tr>
@@ -165,8 +198,9 @@
           </table>
     </div>    
 
-    <br/>    
+     
     <div id="tolerancia">
+    <br/>   
     <table>   
  
 
@@ -175,62 +209,83 @@
       <td><input type="text" name="diasTolerancia"/></td>
       <td>Monto</td>
       <td><input type="text" name="montoTolerancia"/></td>
-      <td><input type="button" name="runJob" class="save" value="Run Job" id="runJob" onClick="$( '#preconciliacion' ).show( 'blind', {}, 500, '' );"/></td>
+      <td><input type="button" name="runJob" class="save" value="Run Job" id="runJob"/></td>
 </table>
     
     </div>	
 
-    <br/>
     <div id="preconciliacion" style="display:none;">
+    <div id="filters">
+      <br/>
     <table>
+     <tr>
+       <td>
+         <div> fecha de Venta</div>
+          <input type="text" value="" id="fechaVenta"/>
+       </td>
+       <td>
+         <div> Monto de la Venta</div>
+          <input type="text" id="montoVenta"/>
+       </td>
+       <td>
+         <div> fecha de la Liquidacion</div>
+          <input type="text" value="" id="fechaLiq"/>
+       </td>
+       <td>
+         <div> Monto de la Liquidacion</div>
+          <input type="text" id="montoLiq"/>
+       </td>                     
+     </tr>
+    </table>
+    </div>
+    <div id="preconciliacionItems">
+    <table width="100%;" >
     <tr>
-      <td>
-        <div id="from" style="width:300;height:300;overflow:auto;border:0.5px">
+      <td style="align:left;">
+        <div id="from" style="width:300;height:500;align:left;overflow:auto;border:1px solid">
           <ol class="selectable" id="selectable">
-       	   <li class="ui-widget-content">Item 3</li>
-       	   <li class="ui-widget-content">Item 4</li>
-       	   <li class="ui-widget-content">Item 5</li>
-       	   <li class="ui-widget-content">Item 6</li>
-       	   <li class="ui-widget-content">Item 7</li>
-       	   <li class="ui-widget-content">Item 8</li>
-       	   <li class="ui-widget-content">Item 9</li>
-       	   <li class="ui-widget-content">Item 10</li>
-       	   <li class="ui-widget-content">Item 11</li>
-       	   <li class="ui-widget-content">Item 12</li>
-       	   <li class="ui-widget-content">Item 13</li>
-       	   <li class="ui-widget-content">Item 14</li>
-       	   <li class="ui-widget-content">Item 15</li>
-       	   <li class="ui-widget-content">Item 16</li>
-       	   <li class="ui-widget-content">Item 17</li>
-       	   <li class="ui-widget-content">Item 18</li>
-       	   <li class="ui-widget-content">Item 19</li>
-       	   <li class="ui-widget-content">Item 20</li>
-       	   <li class="ui-widget-content">Item 21</li>
-       	   <li class="ui-widget-content">Item 22</li>
-       	   <li class="ui-widget-content">Item 23</li>
-       	   <li class="ui-widget-content">Item 24</li>
-       	   <li class="ui-widget-content">Item 25</li>
-       	   <li class="ui-widget-content">Item 26</li>
-       	   <li class="ui-widget-content">Item 27</li>
-       	   <li class="ui-widget-content">Item 28</li>
-       	   <li class="ui-widget-content">Item 29</li>
+       	   <li id="item1">Usuario: Usuario1<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112331<br/>Nro. Op.:1</li>
+	   <li id="item2">Usuario: Usuario2<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112332<br/>Nro. Op.:2</li>
+	   <li id="item3">Usuario: Usuario3<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112333<br/>Nro. Op.:3</li>
+	   <li id="item4">Usuario: Usuario4<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112334<br/>Nro. Op.:4</li>
+	   <li id="item5">Usuario: Usuario5<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112335<br/>Nro. Op.:5</li>
+	   <li id="item6">Usuario: Usuario6<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112336<br/>Nro. Op.:6</li>
+	   <li id="item7">Usuario: Usuario7<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112337<br/>Nro. Op.:7</li>
+	   <li id="item8">Usuario: Usuario8<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112338<br/>Nro. Op.:8</li>
+	   <li id="item9">Usuario: Usuario9<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112339<br/>Nro. Op.:9</li>
+	   <li id="item10">Usuario: Usuario10<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112340<br/>Nro. Op.:10</li>
+	   <li id="item11">Usuario: Usuario11<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112341<br/>Nro. Op.:11</li>
+	   <li id="item12">Usuario: Usuario12<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112342<br/>Nro. Op.:12</li>
+	   <li id="item13">Usuario: Usuario13<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112343<br/>Nro. Op.:13</li>
+	   <li id="item14">Usuario: Usuario14<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112344<br/>Nro. Op.:14</li>
+	   <li id="item15">Usuario: Usuario15<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112345<br/>Nro. Op.:15</li>
+	   <li id="item16">Usuario: Usuario16<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112346<br/>Nro. Op.:16</li>
+	   <li id="item17">Usuario: Usuario17<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112347<br/>Nro. Op.:17</li>
+	   
           </ol>
        </div>
       </td>
-      <td>
-       <p> Aca iríran los botones </p>
+      <td style="algin:center">
+       <div  id="buttons" style="width:100%;height:500;vertical-align: middle;position:relative;center;overflow:auto">
+       
+           <div id="confirm"><input type="button" name="confirm" class="save" value=">>" id="sendItems"/></div>
+           
+           <div id="revert"><input type="button" name="confirm" class="save" value="<<" id="revertItems"/></div>
+       
+       </div>
       </td>
       
-      <td>
-        <div  id="to" style="width:300;height:300;overflow:auto">
+      <td style="align:right">
+        <div  id="to" style="width:300;height:500;overflow:auto;position:relative;algin:right;border:1px solid">
           <ol class="selectable" id="selectableTo">        
-       	   <li class="ui-widget-content">Item 1</li>
-       	   <li class="ui-widget-content">Item 2</li>
+	     <li>Usuario: Usuario18<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112348<br/>Nro. Op.:18</li>
+	     <li>Usuario: Usuario19<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112349<br/>Nro. Op.:19</li>
           </ol>
        </div>
       </td>      
     </tr>
     </table>
+    </div>
     </div>
     </div>
     
