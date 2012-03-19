@@ -127,9 +127,25 @@
     <table>
     <tr>
       <td>
-        <div id="sales" style="width:300;height:200;overflow:auto;">
+        <div id="sales" style="width:350;height:200">
+        <div id="sales_filter">
+			    <table>
+			     <tr>
+			       <td>
+			         <div> fecha de Venta</div>
+			          <input type="text" value="" id="fechaVenta"/>
+			       </td>
+			       <td>
+			         <div> Monto de la Venta</div>
+			          <input type="text" id="montoVenta"/>
+			       </td>
+			     </tr>
+			    </table>    
+			  </div>
+	  <div id="sales_filtered" style="width:350;height:200;overflow:auto;">
+            
           <ol class="selectable" id="selectable">
-       	   <li class="ui-widget-content">Venta 3</li>
+       	   <li class="ui-widget-content">Usuario: Usuario1<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112331<br/>Nro. Op.:1</li>
        	   <li class="ui-widget-content">Venta 4</li>
        	   <li class="ui-widget-content">Venta 5</li>
        	   <li class="ui-widget-content">Venta 6</li>
@@ -157,6 +173,7 @@
        	   <li class="ui-widget-content">Venta 28</li>
        	   <li class="ui-widget-content">Venta 29</li>
           </ol>
+        </div>
        </div>
       </td>
       <td>
