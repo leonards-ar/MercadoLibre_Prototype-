@@ -2,6 +2,7 @@
   <head>
     <title>Consolidador Medios de Pago</title>
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/innova.css" />
     <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" />	
     <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>    
@@ -12,25 +13,80 @@
 
   <script type="text/javascript">
 
-    
+
 	$(function() {
-		$( "#selectable"  ).selectable(
-		stop: function() {
-				var result = $( "#select-result" ).empty();
-				$( ".ui-selected", this ).each(function() {
-					var index = $( "#selectable li" ).index( this );
-					result.append( " #" + ( index + 1 ) );
-				});
-			}
-		});
-	}););
-		$( "#selectableTo"  ).selectable();
-		$( "#selectableCons"  ).selectable();
+
+	        
+		$('.sales_check').click(function(){
+		  if(this.checked) {
+		    var misselected = $('#sales_table').find('tr:.yellow').get();
+		    if(misselected.length > 0){
+		    	alert("Select only one");
+		    	this.checked = false;
+		    	return;
+		    }
+		    $(this).parent().parent().toggleClass('yellow');
+		    var monto = $(this).parent().parent().find('td:eq(6)').text();
+		    var balanced = parseFloat($('#balance').text());
+		    balanced = isNaN(balanced)? 0 : balanced;
+		    balanced += parseFloat(monto);
+		    $('#balance').html(String(balanced));
+		  } else {
+		    $(this).parent().parent().removeClass('yellow');
+		    var monto = $(this).parent().parent().find('td:eq(6)').text();
+		    var balanced = parseFloat($('#balance').text());
+		    if(!(isNaN(balanced))){
+  		     balanced -= parseFloat(monto);
+  		     $('#balance').html(String(balanced));
+  		    }
+		  }
+		})
+		
+		$('.card_check').click(function(){
+		  if(this.checked) {
+		    $(this).parent().parent().toggleClass('yellow');
+		    var monto = $(this).parent().parent().find('td:eq(4)').text();
+		    var balanced = parseFloat($('#balance').text());
+		    balanced = isNaN(balanced)? 0 : balanced;
+		    balanced -= parseFloat(monto);
+		    $('#balance').html(String(balanced));
+		  } else {
+		    $(this).parent().parent().removeClass('yellow');
+		    var monto = $(this).parent().parent().find('td:eq(4)').text();
+		    var balanced = parseFloat($('#balance').text());
+		    if(!(isNaN(balanced))){
+		      balanced += parseFloat(monto);
+		      $('#balance').html(String(balanced));		    
+		    }
+		  }
+		})
+		
+		$('#agrupar').click(function(){
+
+		  var salesRow = $('#sales_table').find('tr:.yellow').clone();
+		  var cardsRow = $('#cards_table').find('tr:.yellow').clone();
+
+		  if(salesRow.length == 0 || cardsRow == 0) {
+		    alert("Please select a sale and a card");
+		    return;
+		  }		  
+		  
+		  alert(salesRow.length);
+		  salesRow.removeClass('yellow');
+		  
+		  $('#consolidatedCards_table').append(salesRow);
+		  
+		  $('#sales_table').find('tr:.yellow').remove();
+		  $('#cards_table').find('tr:.yellow').remove();
+		  var balanced = 0;
+		  $('#balance').html(String(balanced));
+		})
+				
 		
 	});    
   </script>
   
-	<style>
+	<!--style>
 	#feedback { font-size: 1.4em; }
 	#selectable .ui-selecting { background: #FECA40; }
 	#selectable .ui-selected { background: #F39814; color: white; }
@@ -44,7 +100,7 @@
 	#selectableCons .ui-selected { background: #95FD04; color: white; }
 	#selectableCons { list-style-type: none; margin: 0; padding: 0; width: 60%; }	
 	#selectableCons li { margin: 3px; padding: 0.3em; font-size: 1.4em; height: 10px; }	
-	</style>  
+	</style-->  
 </head>
 <body>
   <div id="spinner" class="spinner" style="display:none;">
@@ -121,18 +177,18 @@
 
     </div>
     <br/>
-    <div id="myBody" style="display:none" class="ui-widget-content ui-corner-all">
+    <div id="myBody" style="display:none" >
     
     <div id="preconciliacion">
     <table>
     <tr>
       <td>
-        <div id="sales" style="width:350;height:200">
+        <div id="sales" style="width:450;height:200">
         <div id="sales_filter">
 			    <table>
 			     <tr>
 			       <td>
-			         <div> fecha de Venta</div>
+			         <div> Fecha de Venta</div>
 			          <input type="text" value="" id="fechaVenta"/>
 			       </td>
 			       <td>
@@ -142,64 +198,162 @@
 			     </tr>
 			    </table>    
 			  </div>
-	  <div id="sales_filtered" style="width:350;height:200;overflow:auto;">
+	  <div id="sales_filtered" style="width:450;height:200;overflow:auto;">
             
-          <ol class="selectable" id="selectable">
-       	   <li class="ui-widget-content">Usuario: Usuario1<br/>Pais: Argentina<br/>Division: div1<br/>Nro. Tarj.: 1112331<br/>Nro. Op.:1</li>
-       	   <li class="ui-widget-content">Venta 4</li>
-       	   <li class="ui-widget-content">Venta 5</li>
-       	   <li class="ui-widget-content">Venta 6</li>
-       	   <li class="ui-widget-content">Venta 7</li>
-       	   <li class="ui-widget-content">Venta 8</li>
-       	   <li class="ui-widget-content">Venta 9</li>
-       	   <li class="ui-widget-content">Venta 10</li>
-       	   <li class="ui-widget-content">Venta 11</li>
-       	   <li class="ui-widget-content">Venta 12</li>
-       	   <li class="ui-widget-content">Venta 13</li>
-       	   <li class="ui-widget-content">Venta 14</li>
-       	   <li class="ui-widget-content">Venta 15</li>
-       	   <li class="ui-widget-content">Venta 16</li>
-       	   <li class="ui-widget-content">Venta 17</li>
-       	   <li class="ui-widget-content">Venta 18</li>
-       	   <li class="ui-widget-content">Venta 19</li>
-       	   <li class="ui-widget-content">Venta 20</li>
-       	   <li class="ui-widget-content">Venta 21</li>
-       	   <li class="ui-widget-content">Venta 22</li>
-       	   <li class="ui-widget-content">Venta 23</li>
-       	   <li class="ui-widget-content">Venta 24</li>
-       	   <li class="ui-widget-content">Venta 25</li>
-       	   <li class="ui-widget-content">Venta 26</li>
-       	   <li class="ui-widget-content">Venta 27</li>
-       	   <li class="ui-widget-content">Venta 28</li>
-       	   <li class="ui-widget-content">Venta 29</li>
-          </ol>
+          <table id="sales_table">
+          <tr>
+           <th></th>
+           <th class="sortable sorted desc" ><a href="#">Usuario</a></th>
+           <th class="sortable" ><a href="#">Pais</a></th>
+           <th class="sortable" ><a href="#">Division</a></th>
+           <th class="sortable" ><a href="#">Tarjeta</a></th>
+           <th class="sortable" ><a href="#">Nro.Op.</a></th>
+           <th class="sortable" ><a href="#">Monto</a></th>
+          </tr>
+          <tr id='trVenta1'>
+           <td><input class="sales_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Usuario1</td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>1112331</td>
+           <td>1</td>
+           <td>500</td>
+          </tr>
+          <tr id='trVenta2'>
+           <td><input class="sales_check" type="checkbox" id="tdCheck-2"/></td>
+           <td>Usuario2</td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>11120097</td>
+           <td>134</td>
+           <td>500</td>
+          </tr>
+          <tr id='trVenta3'>
+           <td><input class="sales_check" type="checkbox" id="tdCheck-3"/></td>
+           <td>Usuario3</td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>11112123</td>
+           <td>11234</td>
+           <td>100</td>
+          </tr>
+          <tr id='trVenta4'>
+           <td><input class="sales_check" type="checkbox" id="tdCheck-4"/></td>
+           <td>Usuario4</td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>11121</td>
+           <td>2</td>
+           <td>50</td>
+          </tr>
+          <tr id='trVenta5'>
+           <td><input class="sales_check" type="checkbox" id="tdCheck-5"/></td>
+           <td>Usuario5</td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>1114</td>
+           <td>452</td>
+           <td>3500</td>
+          </tr>
+          <tr id='trVenta6'>
+           <td><input class="sales_check" type="checkbox" id="tdCheck-6"/></td>
+           <td>Usuario6</td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>1112338</td>
+           <td>150</td>
+           <td>1250</td>
+          </tr>                                                  
+          </table>
         </div>
        </div>
       </td>
       <td>
-        <span class="button"><input type="button" name="search" class="save" value="agrupar" id="agrupar" onClick="alert('should be agrupate');" /></span>
+        <span class="button"><input type="button" class="save" value="agrupar" id="agrupar"/></span><br><br><br>
+        <p id='balance'>0</p></span>
       </td>
       <td>
-        <div  id="cards" style="width:300;height:200;overflow:auto;">
-          <ol class="selectable" id="selectableTo">        
-       	   <li class="ui-widget-content">Medio de cobro 3</li>
-       	   <li class="ui-widget-content">Medio de cobro 4</li>
-       	   <li class="ui-widget-content">Medio de cobro 5</li>
-       	   <li class="ui-widget-content">Medio de cobro 6</li>
-       	   <li class="ui-widget-content">Medio de cobro 7</li>
-       	   <li class="ui-widget-content">Medio de cobro 8</li>
-       	   <li class="ui-widget-content">Medio de cobro 9</li>
-       	   <li class="ui-widget-content">Medio de cobro 10</li>
-       	   <li class="ui-widget-content">Medio de cobro 11</li>
-       	   <li class="ui-widget-content">Medio de cobro 12</li>
-       	   <li class="ui-widget-content">Medio de cobro 13</li>
-       	   <li class="ui-widget-content">Medio de cobro 14</li>
-       	   <li class="ui-widget-content">Medio de cobro 15</li>
-       	   <li class="ui-widget-content">Medio de cobro 16</li>
-       	   <li class="ui-widget-content">Medio de cobro 17</li>
-       	   <li class="ui-widget-content">Medio de cobro 18</li>
-       	   <li class="ui-widget-content">Medio de cobro 19</li>
-          </ol>
+              <div id="cards_filter">
+			    <table>
+			     <tr>
+			       <td>
+			         <div> Fecha de Liquidación</div>
+			          <input type="text" value="" id="fechaLiq"/>
+			       </td>
+			       <td>
+			         <div> Monto de la Liquidación</div>
+			          <input type="text" id="montoLiq"/>
+			       </td>
+			     </tr>
+			    </table>    
+			  </div>
+
+        <div  id="cards" style="height:200;overflow:auto;">
+          <table id="cards_table">
+          <tr>
+           <th></th>
+           <th class="sortable sorted desc" ><a href="#">Pais</th>
+           <th class="sortable" ><a href="#">Division</th>
+           <th class="sortable" ><a href="#">Tarjeta</th>
+           <th class="sortable" ><a href="#">Monto</th>
+          </tr>
+          <tr id='card1'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>500</td>
+          </tr>
+          <tr id='card2'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>500</td>
+          </tr>
+          <tr id='card3'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>500</td>
+          </tr>
+          <tr id='card4'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>30</td>
+          </tr>
+          <tr id='card5'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>200</td>
+          </tr>
+          <tr id='card6'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>140</td>
+          </tr>
+          <tr id='card7'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>100</td>
+          </tr>
+          <tr id='card8'>
+           <td><input class="card_check" type="checkbox" id="tdCheck-1"/></td>
+           <td>Argentina</td>
+           <td>div1</td>
+           <td>VISA</td>
+           <td>50</td>
+          </tr>                                                            
+          </table>
        </div>
       </td>      
     </tr>
@@ -214,11 +368,21 @@
  
        </td>
         <td>
-        <div id="consolidatedCards" style="width:400;height:200;overflow:auto;">
-          <ol class="selectable" id="selectableCons">
-       	   <li class="ui-widget-content">Venta 1 - Medios de Cobro 1</li>
-       	   <li class="ui-widget-content">Venta 2 - Medios de Cobro 2</li>
-          </ol>
+        <div id="consolidatedCards" style="width:800;height:200;overflow:auto;">
+          <table id="consolidatedCards_table" size="100%">
+            <tr>
+             <th></th>
+             <th class="sortable sorted desc" ><a href="#">Usuario</a></th>
+             <th class="sortable" ><a href="#">Pais</a></th>
+             <th class="sortable" ><a href="#">Division</a></th>
+             <th class="sortable" ><a href="#">Tarjeta</a></th>
+             <th class="sortable" ><a href="#">Nro.Op.</a></th>
+             <th class="sortable" ><a href="#">Monto</a></th>
+             <th class="sortable" ><a href="#">Tarjeta</th>
+             <th class="sortable" ><a href="#">Monto</th>             
+            </tr>            
+          </table>
+          
        </div>
       </td>
       <td> 
